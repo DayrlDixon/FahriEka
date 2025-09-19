@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan | Fahri & Eka</title>
+    <meta name="description" content="Dengan memohon rahmat dan ridho Tuhan, kami mengundang Anda untuk merayakan hari bahagia kami.">
+    <meta property="og:title" content="Undangan Pernikahan">
+    <meta property="og:description" content="Sebuah kehormatan bagi kami jika Anda berkenan hadir.">
+    <meta property="og:image" content="assets/thumbnail.jpg">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+</head>
+<body>
+
+    <div id="cover">
+        <div class="cover-content">
+            <p>The Wedding Of</p>
+            <h1 id="cover-couple" class="animate-zoom">Fahri & Eka</h1>
+            <div id="cover-guest">
+                <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
+                <p class="guest-name">Tamu Undangan</p>
+            </div>
+            <button id="openBtn"><i class="fa-solid fa-envelope-open"></i> Buka Undangan</button>
+        </div>
+    </div>
+
+    <main id="content" class="hidden">
+        
+        <section id="home">
+            <h2 class="animate-up">Assalamualaikum Wr. Wb.</h2>
+            <p class="animate-up">Dengan memohon rahmat dan ridho-Mu ya Allah, kami bermaksud menyelenggarakan pernikahan putra-putri kami:</p>
+            
+            <div class="couple-profile animate-up">
+                <img src="assets/fahri.webp" alt="Foto Fahri" class="profile-photo">
+                <h3 class="font-tangerine">Fahri Dwi Sikhan</h3>
+                <p>Putra dari Bapak Jumikan & Ibu Sukiyah</p>
+            </div>
+            
+            <span class="ampersand animate-zoom">&</span>
+            
+            <div class="couple-profile animate-up">
+                <img src="assets/eka.webp" alt="Foto Eka" class="profile-photo">
+                <h3 class="font-tangerine">Arli Eka Perdana</h3>
+                <p>Putri dari Bapak Nurali & Ibu Arumi</p>
+            </div>
+        </section>
+
+        <section id="tanggal">
+            <h2 class="animate-up">Detail Acara</h2>
+            <div class="event-card animate-left">
+                <h3>Akad Nikah</h3>
+                <p><i class="fa-solid fa-calendar-days"></i> Minggu, 05 Oktober 2030</p>
+                <p><i class="fa-solid fa-clock"></i> 08:00 WIB - Selesai</p>
+                <p><i class="fa-solid fa-map-marker-alt"></i> Kediaman Mempelai Wanita</p>
+            </div>
+            <div class="event-card animate-right">
+                <h3>Resepsi</h3>
+                <p><i class="fa-solid fa-calendar-days"></i> Minggu, 05 Oktober 2030</p>
+                <p><i class="fa-solid fa-clock"></i> 10:00 WIB - Selesai</p>
+                <p><i class="fa-solid fa-map-marker-alt"></i> Gedung Serbaguna, Jl. Bahagia No. 123, Kota Tangerang</p>
+            </div>
+            <div id="countdown"></div>
+            <a href="https://maps.app.goo.gl/example" target="_blank" class="map-button animate-zoom">
+                <i class="fa-solid fa-map-location-dot"></i> Buka Peta Lokasi
+            </a>
+        </section>
+
+        <section id="galeri">
+            <h2 class="animate-up">Galeri Kenangan</h2>
+            <div class="gallery">
+                <img src="assets/img.webp" alt="Foto Prewed 1" class="animate-zoom"/>
+                <img src="assets/3.webp" alt="Foto Prewed 2" class="animate-zoom"/>
+                <img src="assets/eka.webp" alt="Foto Prewed 3" class="animate-zoom"/>
+                <img src="assets/fahri.webp" alt="Foto Prewed 4" class="animate-zoom"/>
+                <img src="assets/fahrieka.webp" alt="Foto Prewed 5" class="animate-zoom"/>
+            </div>
+        </section>
+
+        <section id="ucapan">
+            <h2 class="animate-up">Buku Tamu & Ucapan</h2>
+            <form id="rsvp-form" class="animate-up">
+                <input type="text" id="form-nama" placeholder="Nama Anda" required>
+                <select id="form-konfirmasi" required>
+                    <option value="" disabled selected>Konfirmasi Kehadiran</option>
+                    <option value="Hadir">Hadir</option>
+                    <option value="Tidak Hadir">Tidak Hadir</option>
+                </select>
+                <textarea id="form-pesan" placeholder="Tulis ucapan & doa..." rows="4" required></textarea>
+                <button type="submit">Kirim Ucapan</button>
+            </form>
+            <div id="guestbook-list"></div>
+        </section>
+
+        <section id="amplop">
+            <h2 class="animate-up">Kirim Hadiah</h2>
+            <p class="animate-up">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih, Anda dapat memberi kado secara digital.</p>
+            <div class="gift-account animate-left">
+                <p><strong>BCA</strong><span id="rek1">1234567890</span></p>
+                <button class="copy-btn" data-target="rek1"><i class="fa-solid fa-copy"></i> Salin</button>
+            </div>
+            <div class="gift-account animate-right">
+                <p><strong>Shopeepay</strong><span id="rek2">081234567890</span></p>
+                <button class="copy-btn" data-target="rek2"><i class="fa-solid fa-copy"></i> Salin</button>
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer>
+        <div class="animate-up">
+            <p>Atas kehadiran dan doa restu Bapak/Ibu/Saudara/i, kami ucapkan terima kasih.</p>
+            <h1 class="font-tangerine">Fahri & Eka</h1>
+        </div><br>
+        <div class="pemasaran animate-up">
+            <p class="copyright small mt-3">
+                Power by: <a target="_blank" href="https://www.instagram.com/fahridwis05/">@FDGalery</a><br>
+                <a target="_blank" href="https://api.whatsapp.com/send/?phone=6281287927192">WhatsApp FDGalery</a>
+            </p>
+        </div>
+    </footer><br><br><br>
+
+    <nav class="bottom-nav hidden">
+        <a href="#home" class="active"><i class="fa-solid fa-house"></i></a>
+        <a href="#tanggal"><i class="fa-solid fa-calendar-check"></i></a>
+        <a href="#galeri"><i class="fa-solid fa-images"></i></a>
+        <a href="#ucapan"><i class="fa-solid fa-book-open"></i></a>
+        <a href="#amplop"><i class="fa-solid fa-gift"></i></a>
+    </nav>
+    
+    <button id="musicBtn" class="hidden"><i class="fa-solid fa-music"></i></button>
+    <audio id="bgMusic" loop src="assets/audio.mp3"></audio>
+    <div id="copy-notification" class="hidden">✅ Berhasil disalin!</div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
