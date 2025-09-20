@@ -102,3 +102,29 @@ footer a:hover {color: sandybrown; text-decoration: underline; }
 .visible.animate-up { animation: fadeInUp 1.2s ease-out forwards; }
 .visible.animate-zoom { animation: zoomIn 1.2s ease-out forwards; }
 #musicBtn.playing { animation: spin 4s linear infinite; }
+/* --- Gaya Tambahan untuk Guestbook --- */
+#guestbook-list { 
+    text-align: left; 
+    max-height: 400px; 
+    overflow-y: auto; 
+    margin-top: 2rem; 
+    padding-right: 10px; /* Jarak untuk scrollbar */
+}
+.guestbook-entry { 
+    background: #fff; 
+    padding: 1rem; 
+    border-radius: 8px; 
+    margin-bottom: 10px; 
+    border-left: 4px solid var(--primary-color); 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.guestbook-entry .name { 
+    font-weight: 500; 
+    color: var(--dark-color);
+    font-size: 1.1rem;
+}
+.guestbook-entry .message { 
+    margin-top: 0.5rem; 
+    font-style: italic;
+    color: #555;
+}
