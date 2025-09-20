@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
 const firebaseConfig = {
   apiKey: "AIzaSyB8w9DuSXm-G2m94K7uAc3JTVDXslgcqQw",
   authDomain: "fahrieka-6b2c2.firebaseapp.com",
-  databaseURL: "https://fahrieka-6b2c2-default-rtdb.firebaseio.com",
+  databaseURL: "https://dayrldixon.github.io/FahriEka.firebaseio.com",
   projectId: "fahrieka-6b2c2",
   storageBucket: "fahrieka-6b2c2.firebasestorage.app",
   messagingSenderId: "462028758444",
   appId: "1:462028758444:web:eee0dd1138c1ab622d6e09",
-  measurementId: "G-7SWHK0WWY2"
+  measurementId: "G-7SWHK0WWY2:web:https://dayrldixon.github.io/FahriEka"
 };
      firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
@@ -21,6 +21,10 @@ const firebaseConfig = {
     const guestNameElement = document.querySelector('#cover-guest .guest-name');
     const bgMusic = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicBtn');
+    const guestbookForm = document.getElementById('guestbook-form');
+    const guestbookList = document.getElementById('guestbook-list');
+    const formNama = document.getElementById('form-nama');
+    const formPesan = document.getElementById('form-pesan');
 
     // --- 1. Fungsi Buka Undangan ---
     openBtn.addEventListener('click', () => {
@@ -174,3 +178,4 @@ const firebaseConfig = {
     setupOtherFeatures();
     setupScrollAnimations();
 });
+
