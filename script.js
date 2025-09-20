@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- GANTI DENGAN KONFIGURASI FIREBASE ANDA ---
+    // --- Konfigurasi Firebase Anda ---
     const firebaseConfig = {
       apiKey: "AIzaSyB8w9DuSXm-G2m94K7uAc3JTVDXslgcqQw",
       authDomain: "fahrieka-6b2c2.firebaseapp.com",
@@ -29,11 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const formNama = document.getElementById('form-nama');
     const formPesan = document.getElementById('form-pesan');
 
-
-    // --- 1. Fungsi Buka Undangan (INI AKAN BERFUNGSI KEMBALI) ---
+    // --- 1. Fungsi Buka Undangan ---
     openBtn.addEventListener('click', () => {
         cover.style.opacity = '0';
-        setTimeout(() => cover.style.display = 'none', 1000); // Ganti ke display none agar tidak menghalangi
+        setTimeout(() => cover.style.display = 'none', 1000);
         content.classList.remove('hidden');
         bottomNav.classList.remove('hidden');
         musicBtn.classList.remove('hidden');
@@ -57,13 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const startCountdown = () => {
         const el = document.getElementById('countdown');
         if (!el) return;
-        // Tanggal acara yang sudah lewat (berdasarkan interaksi sebelumnya)
-        // Jika ingin mengganti, ubah tanggal di bawah ini
-        const targetDate = new Date('2025-10-05T10:00:00').getTime(); 
+        const targetDate = new Date('2030-10-05T10:00:00').getTime();
         const interval = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
+            const distance = targetDate - new Date().getTime();
             if (distance < 0) {
                 clearInterval(interval);
                 el.innerHTML = `<p>Acara Telah Berlangsung</p>`;
@@ -72,8 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const d = Math.floor(distance / (1000 * 60 * 60 * 24));
             const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((distance % (1000 * 60)) / 1000); // Menambahkan detik
-            el.innerHTML = `<div>${d}<span>Hari</span></div><div>${h}<span>Jam</span></div><div>${m}<span>Menit</span></div><div>${s}<span>Detik</span></div>`;
+            el.innerHTML = `<div>${d}<span>Hari</span></div><div>${h}<span>Jam</span></div><div>${m}<span>Menit</span></div>`;
         }, 1000);
     };
 
@@ -93,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         guestbookRef.push(newEntry)
             .then(() => {
-                formPesan.value = ''; // Kosongkan kolom pesan setelah terkirim
+                formPesan.value = '';
             })
             .catch((error) => {
                 console.error("Gagal mengirim ucapan: ", error);
@@ -114,11 +108,25 @@ document.addEventListener('DOMContentLoaded', () => {
                             <p class="message">"${entry.pesan}"</p>
                         </div>`;
             }).join('');
+            // Panggil kembali fungsi animasi agar entri baru juga mendapat animasi
+            setupScrollAnimations();
         });
     };
-    
-    // --- Panggil Semua Fungsi Inisialisasi ---
-    parseGuestName();
-    startCountdown();
-    renderGuestbook();
-});
+
+    // --- 5. Fungsi Navigasi, Musik, dan Salin (DIKEMBALIKAN) ---
+    const setupOtherFeatures = () => {
+        const sections = document.querySelectorAll('main section[id]');
+        const navLinks = document.querySelectorAll('.bottom-nav a');
+        const navObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    const activeLink = document.querySelector(`.bottom-nav a[href="#${entry.target.id}"]`);
+                    if (activeLink) activeLink.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-50% 0px -50% 0px' });
+        sections.forEach(section => navObserver.observe(section));
+
+        musicBtn.addEventListener('click', () => {
+            bgMusic.paused ? (bgMusic.play(), musicBtn.classList.
