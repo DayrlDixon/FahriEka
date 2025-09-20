@@ -1,0 +1,165 @@
+:root {
+    --bg-color: #F8F5F2;
+    --primary-color: #8C6A5D;
+    --dark-color: #5D4037;
+    --text-color: #6D6D6D;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+    --font-display: 'Tangerine', cursive;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 1rem; }
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    background: url('assets/gunung.png') no-repeat center/cover; /* Menggunakan background yang lebih subtle */
+    color: var(--text-color);
+    text-align: center;
+    font-size: 16px;
+}
+h2, h3 { font-family: var(--font-heading); color: var(--dark-color); }
+h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+h3 { font-size: 1.2rem; }
+p { line-height: 1.6; }
+.hidden { display: none; }
+.font-tangerine { font-family: var(--font-display); font-size: 3.5rem; color: var(--primary-color); font-weight: 700; margin: 0; }
+
+/* --- Cover --- */
+#cover { top: 0; left: 0; width: 100vw; height: 100vh; background: url('assets/bg.png') no-repeat center center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; z-index: 1000; padding: 20px; transition: opacity 1s, visibility 1s; }
+#cover::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); }
+.cover-content { position: relative; }
+#cover-couple { font-family: var(--font-display); font-size: 4.5rem; }
+#cover-guest { margin: 1.5rem 0; }
+.guest-name { font-weight: 500; font-size: 1.2rem; }
+#openBtn { background-color: var(--primary-color); color: white; border: none; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-size: 1rem; }
+#openBtn i { margin-right: 8px; }
+
+/* --- Konten Utama & Section --- */
+main { max-width: 500px; margin: 0 auto; padding-bottom: 100px;}
+section { padding: 3rem 1.5rem; }
+section:nth-child(even) { background: none; } /* Hilangkan selang-seling warna agar background utama terlihat */
+.profile-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; }
+.profile-photoo {width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; }
+.ampersand { font-family: var(--font-display); font-size: 4rem; color: var(--primary-color); display: block; margin: 1rem 0; }
+#dakwah h1, #dakwah h3, #dakwah p { color: var(--text-color); font-weight: normal; }
+/* Section ornament */
+#ornament {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* horizontal center */
+  justify-content: center; /* vertical center */
+  text-align: center;   /* semua teks di tengah */
+  padding: 40px 20px;
+  background: transparent; /* biar ornamen tetap terlihat */
+}
+
+/* Ornamen gambar (SVG) */
+#ornament img {
+  max-width: 120px;   /* ukuran ornamen */
+  margin-bottom: 20px;
+  opacity: 0.8;       /* sedikit samar biar tidak dominan */
+}
+
+/* Container teks Qur’an */
+.text-quran {
+  max-width: 800px;   /* batasi lebar teks biar enak dibaca */
+  color: var(--text-color); /* pakai variabel warna */
+}
+
+/* Ayat Arab */
+.text-quran h2 {
+  font-size: 1.5rem;
+  line-height: 2.2rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+  direction: rtl;     /* teks Arab dari kanan ke kiri */
+  unicode-bidi: isolate;
+}
+
+/* Terjemahan */
+.text-quran h3 {
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.6rem;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+/* Referensi surah */
+.text-quran p {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* --- Detail Acara & Countdown --- */
+.event-card {background: white; padding: 1.5rem; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 1.5rem; }
+.event-card i { color: var(--primary-color); width: 20px; text-align: center; margin-right: 8px; }
+#countdown { display: flex; justify-content: center; gap: 10px; margin: 2rem 0; }
+#countdown div { background: var(--dark-color); color: white; padding: 10px; border-radius: 5px; min-width: 65px; }
+.map-button { display: inline-block; background: var(--primary-color); color: white; text-decoration: none; padding: 12px 24px; border-radius: 25px; margin-top: 1rem; }
+
+/* --- Galeri --- */
+.gallery { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+.gallery img { width: calc(33.333% - 8px); max-width: 120px; border-radius: 8px; box-shadow: 0 6px 16px rgba(0,0,0,0.12); object-fit: cover; animation: rotatePhoto 8s ease-in-out infinite alternate; }
+
+/* --- Form Ucapan & Guestbook --- */
+#rsvp-form input, #rsvp-form select, #rsvp-form textarea, #rsvp-form button { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: var(--font-body); font-size: 1rem; }
+#rsvp-form button { background-color: var(--dark-color); color: white; border: none; cursor: pointer; }
+#guestbook-list { text-align: left; max-height: 400px; overflow-y: auto; margin-top: 2rem; }
+.guestbook-entry { background: #fff; padding: 1rem; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid var(--primary-color); }
+.guestbook-entry .name { font-weight: 500; color: var(--dark-color); display: flex; justify-content: space-between; }
+.guestbook-entry .status { font-size: 0.8rem; background-color: var(--primary-color); color: white; padding: 2px 8px; border-radius: 10px; }
+.guestbook-entry .message { margin-top: 0.5rem; font-style: italic; }
+
+/* --- Amplop & Footer --- */
+.gift-account { display: flex; justify-content: space-between; align-items: center; background: white; padding: 1rem; border-radius: 8px; margin-bottom: 10px; }
+.copy-btn { background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; padding: 8px 12px; }
+footer div.pemasaran { padding:0rem 1.5rem; background-color: #f0e9e9; color :#999; border-radius: 24px ; border: none; cursor: pointer;}
+footer h1 { color: #fff; }
+footer a { color: burlywood; text-decoration: none; }
+footer a:hover {color: sandybrown; text-decoration: underline; }
+.ig-icon{
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.wa-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+/* --- Navigasi & Kontrol Musik --- */
+.bottom-nav { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; background-color: rgba(43, 31, 31, 0.9); backdrop-filter: blur(5px); display: flex; justify-content: space-around; padding: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 500; border-radius: 25px; }
+.bottom-nav a { font-size: 1.2rem; color: #aaa; text-decoration: none; transition: all 0.3s ease; }
+.bottom-nav a.active { color: #fff; transform: scale(1.2); }
+#musicBtn { position: fixed; bottom: 85px; right: 20px; z-index: 500; background: var(--dark-color); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; font-size: 1rem; cursor: pointer; }
+
+/* --- Lainnya --- */
+#copy-notification { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%); background-color: #28a745; color: white; padding: 10px 20px; border-radius: 20px; z-index: 1100; }
+
+/*
+ * =========================================
+ * ANIMASI KEYFRAMES & KELAS BANTU
+ * =========================================
+*/
+
+/* --- Keyframes (Definisi Gerakan Animasi) --- */
+@keyframes rotatePhoto { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes zoomIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+
+/* --- Kelas Bantu untuk Memicu Animasi --- */
+[class*="animate-"] {
+    opacity: 0; /* Semua elemen animasi dimulai dari transparan */
+}
+.visible.animate-left { animation: slideInLeft 1.2s ease-in-out forwards; }
+.visible.animate-right { animation: slideInRight 1.2s ease-out forwards; }
+.visible.animate-up { animation: fadeInUp 1.2s ease-out forwards; }
+.visible.animate-zoom { animation: zoomIn 1.2s ease-out forwards; }
+#musicBtn.playing { animation: spin 4s linear infinite; }
