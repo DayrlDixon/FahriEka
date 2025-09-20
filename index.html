@@ -7,7 +7,7 @@
     <meta name="description" content="Dengan memohon rahmat dan ridho Tuhan, kami mengundang Anda untuk merayakan hari bahagia kami.">
     <meta property="og:title" content="Undangan Pernikahan">
     <meta property="og:description" content="Sebuah kehormatan bagi kami jika Anda berkenan hadir.">
-    <meta property="og:image" content="assets/thumbnail_20250920_082756_0000.jpg">
+    <meta property="og:image" content="assets/thumbnail.jpg">
     <meta property="og:type" content="website">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,6 +28,7 @@
             <button id="openBtn"><i class="fa-solid fa-envelope-open"></i> Buka Undangan</button>
         </div>
     </div>
+
     <main id="content" class="hidden">
         
         <section id="home">
@@ -79,18 +80,22 @@
                 <img src="assets/fahrieka.webp" alt="Foto Prewed 5" class="animate-zoom"/>
             </div>
         </section>
-        
+
         <section id="ucapan">
             <h2 class="animate-up">Buku Tamu & Ucapan</h2>
-            <form id="guestbook-form" class="animate-up">
+            <form id="rsvp-form" class="animate-up">
                 <input type="text" id="form-nama" placeholder="Nama Anda" required>
+                <select id="form-konfirmasi" required>
+                    <option value="" disabled selected>Konfirmasi Kehadiran</option>
+                    <option value="Hadir">Hadir</option>
+                    <option value="Tidak Hadir">Tidak Hadir</option>
+                </select>
                 <textarea id="form-pesan" placeholder="Tulis ucapan & doa..." rows="4" required></textarea>
                 <button type="submit">Kirim Ucapan</button>
             </form>
-            <div id="guestbook-list">
-                </div>
+            <div id="guestbook-list"></div>
         </section>
-        
+
         <section id="amplop">
             <h2 class="animate-up">Kirim Hadiah</h2>
             <p class="animate-up">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih, Anda dapat memberi kado secara digital.</p>
@@ -103,7 +108,9 @@
                 <button class="copy-btn" data-target="rek2"><i class="fa-solid fa-copy"></i> Salin</button>
             </div>
         </section>
+        
     </main>
+    
     <footer>
         <div class="animate-up">
             <p>Atas kehadiran dan doa restu Bapak/Ibu/Saudara/i, kami ucapkan terima kasih.</p>
@@ -128,9 +135,6 @@
     <button id="musicBtn" class="hidden"><i class="fa-solid fa-music"></i></button>
     <audio id="bgMusic" loop src="assets/audio.mp3"></audio>
     <div id="copy-notification" class="hidden">✅ Berhasil disalin!</div>
-    
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
     <script src="script.js" defer></script>
 </body>
