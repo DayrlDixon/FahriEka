@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // KONFIGURASI FIREBASE ANDA
-    // Pastikan nilai ini sesuai dengan yang ada di project Firebase Anda
+
+    // --- GANTI DENGAN KONFIGURASI FIREBASE ANDA ---
     const firebaseConfig = {
       apiKey: "AIzaSyB8w9DuSXm-G2m94K7uAc3JTVDXslgcqQw",
       authDomain: "fahrieka-6b2c2.firebaseapp.com",
-      // URL INI SALAH, SEHARUSNYA SEPERTI DI BAWAH
-      databaseURL: "https://fahrieka-6b2c2-default-rtdb.firebaseio.com", 
+      databaseURL: "https://fahrieka-6b2c2-default-rtdb.firebaseio.com",
       projectId: "fahrieka-6b2c2",
       storageBucket: "fahrieka-6b2c2.appspot.com",
       messagingSenderId: "462028758444",
@@ -30,10 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const formNama = document.getElementById('form-nama');
     const formPesan = document.getElementById('form-pesan');
 
-    // --- 1. Fungsi Buka Undangan ---
+
+    // --- 1. Fungsi Buka Undangan (INI AKAN BERFUNGSI KEMBALI) ---
     openBtn.addEventListener('click', () => {
         cover.style.opacity = '0';
-        setTimeout(() => cover.classList.add('hidden'), 1000);
+        setTimeout(() => cover.style.display = 'none', 1000); // Ganti ke display none agar tidak menghalangi
         content.classList.remove('hidden');
         bottomNav.classList.remove('hidden');
         musicBtn.classList.remove('hidden');
@@ -57,9 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const startCountdown = () => {
         const el = document.getElementById('countdown');
         if (!el) return;
-        const targetDate = new Date('2030-10-05T10:00:00').getTime();
+        // Tanggal acara yang sudah lewat (berdasarkan interaksi sebelumnya)
+        // Jika ingin mengganti, ubah tanggal di bawah ini
+        const targetDate = new Date('2025-10-05T10:00:00').getTime(); 
         const interval = setInterval(() => {
-            const distance = targetDate - new Date().getTime();
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
             if (distance < 0) {
                 clearInterval(interval);
                 el.innerHTML = `<p>Acara Telah Berlangsung</p>`;
@@ -68,7 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const d = Math.floor(distance / (1000 * 60 * 60 * 24));
             const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            el.innerHTML = `<div>${d}<span>Hari</span></div><div>${h}<span>Jam</span></div><div>${m}<span>Menit</span></div>`;
+            const s = Math.floor((distance % (1000 * 60)) / 1000); // Menambahkan detik
+            el.innerHTML = `<div>${d}<span>Hari</span></div><div>${h}<span>Jam</span></div><div>${m}<span>Menit</span></div><div>${s}<span>Detik</span></div>`;
         }, 1000);
     };
 
@@ -76,10 +81,16 @@ document.addEventListener('DOMContentLoaded', () => {
     guestbookForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const newEntry = {
-            nama: formNama.value,
-            pesan: formPesan.value,
+            nama: formNama.value.trim(),
+            pesan: formPesan.value.trim(),
             timestamp: new Date().toISOString()
         };
+        
+        if (!newEntry.nama || !newEntry.pesan) {
+            alert("Nama dan pesan tidak boleh kosong.");
+            return;
+        }
+
         guestbookRef.push(newEntry)
             .then(() => {
                 formPesan.value = ''; // Kosongkan kolom pesan setelah terkirim
@@ -103,19 +114,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             <p class="message">"${entry.pesan}"</p>
                         </div>`;
             }).join('');
-            setupScrollAnimations();
         });
     };
     
-    // ... (Sisa fungsi lainnya sama seperti sebelumnya)
-
     // --- Panggil Semua Fungsi Inisialisasi ---
     parseGuestName();
     startCountdown();
-    renderGuestbook(); // Memanggil fungsi untuk menampilkan buku tamu
-    setupOtherFeatures(); // Anda bisa menambahkan fungsi ini kembali jika diperlukan
-    setupScrollAnimations();
+    renderGuestbook();
 });
-
-// Anda perlu menambahkan kembali fungsi setupOtherFeatures dan setupScrollAnimations
-// jika fungsi tersebut tidak ada di dalam scope.
