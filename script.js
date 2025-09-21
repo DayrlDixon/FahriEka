@@ -78,6 +78,12 @@ const renderGuestbook = () => {
 // Kirim data ke Google Sheet
 rsvpForm.addEventListener('submit', (e) => {
   e.preventDefault();
+  
+  // Simpan teks tombol asli dan nonaktifkan tombol
+  const originalButtonText = submitButton.textContent;
+  submitButton.disabled = true;
+  submitButton.textContent = 'Mengirim...';
+
   const newEntry = {
     nama: document.getElementById('form-nama').value,
     konfirmasi: document.getElementById('form-konfirmasi').value,
@@ -95,13 +101,12 @@ rsvpForm.addEventListener('submit', (e) => {
     renderGuestbook(); // reload daftar tamu
   })
   .catch(err => console.error("Gagal kirim data: ", err))
-        .finally(() => {
-            // Kembalikan tombol ke keadaan semula
-            submitButton.disabled = false;
-            submitButton.textContent = originalButtonText;
-        });
-    });
-
+  .finally(() => {
+      // Kembalikan tombol ke keadaan semula
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText; // Sekarang variabelnya sudah ada
+  });
+});
     // --- 6. Navigasi, Musik, dan Fitur Salin ---
     const setupOtherFeatures = () => {
         const sections = document.querySelectorAll('main section[id]');
@@ -156,4 +161,5 @@ rsvpForm.addEventListener('submit', (e) => {
     renderGuestbook(); // Memuat data RSVP saat halaman pertama kali dibuka
     setupOtherFeatures();
     setupScrollAnimations();
+
 });
