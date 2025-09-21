@@ -165,3 +165,4 @@ document.addEventListener('DOMContentLoaded', () => {
     setupOtherFeatures();
     setupScrollAnimations();
 });
+
