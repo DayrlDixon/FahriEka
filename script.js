@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- URL Google Apps Script Anda ---
     // Pastikan URL ini sudah benar dan sesuai dengan endpoint Apps Script Anda
-    const SHEET_URL = "https://script.google.com/macros/s/AKfycby9VbWXGfoLjpssgoyB2GIa_BMrxAjJQe2C-b3l3MCQd_EIuzCQM350Xy4vsaaT5C9E/exec";
+    const SHEET_URL = "https://script.google.com/macros/s/AKfycbwP5mTzYNn_ABsW5ZqwOPxkbRbA4bB5xoxFK2Bsq3JqBIMra--FgaSrAg4Z1jRf_tVH/exec";
 
     // --- Pemilihan Elemen DOM ---
     const cover = document.getElementById('cover');
@@ -163,4 +163,5 @@ rsvpForm.addEventListener('submit', (e) => {
     setupScrollAnimations();
 
 });
+
 
