@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- URL Google Apps Script Anda ---
-    // Pastikan URL ini sudah benar dan sesuai dengan endpoint Apps Script Anda
-    const SHEET_URL = "https://script.google.com/macros/s/AKfycbwP5mTzYNn_ABsW5ZqwOPxkbRbA4bB5xoxFK2Bsq3JqBIMra--FgaSrAg4Z1jRf_tVH/exec";
+    // --- GANTI URL INI ---
+    // Tempel (paste) URL Web App yang Anda dapat dari Langkah 2 di sini
+    const SHEET_URL = "https://script.google.com/macros/s/AKfycbyMcPi2E7bpRe2iQYPhfrUSSwCMpVlL5WdtKq5sjsQLDYxD_MURo4YBY3c8R2T2P7u6/exec";
 
     // --- Pemilihan Elemen DOM ---
     const cover = document.getElementById('cover');
@@ -55,58 +55,63 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- 4. RSVP: Ambil & Tampilkan Data dari Google Sheets ---
-// Render daftar tamu dari Google Sheet
-const renderGuestbook = () => {
-  fetch(SHEET_URL)
-    .then(res => res.json())
-    .then(entries => {
-      guestbookList.innerHTML = entries.reverse().map(entry => {
-        const statusClass = entry.konfirmasi.toLowerCase().replace(' ', '-');
-        return `<div class="guestbook-entry animate-up">
-                  <div class="name">
-                    <span>${entry.nama}</span>
-                    <span class="status ${statusClass}">${entry.konfirmasi}</span>
-                  </div>
-                  <p class="message">"${entry.pesan}"</p>
-                </div>`;
-      }).join('');
-      setupScrollAnimations();
-    })
-    .catch(err => console.error("Gagal load guestbook: ", err));
-};
+    const renderGuestbook = () => {
+        fetch(SHEET_URL)
+            .then(res => res.json())
+            .then(entries => {
+                guestbookList.innerHTML = entries.reverse().map(entry => {
+                    const statusClass = entry.konfirmasi.toLowerCase().replace(' ', '-');
+                    return `<div class="guestbook-entry animate-up">
+                              <div class="name">
+                                <span>${entry.nama}</span>
+                                <span class="status ${statusClass}">${entry.konfirmasi}</span>
+                              </div>
+                              <p class="message">"${entry.pesan}"</p>
+                            </div>`;
+                }).join('');
+                // Panggil lagi animasi untuk entri baru
+                setupScrollAnimations(); 
+            })
+            .catch(err => console.error("Gagal memuat buku tamu: ", err));
+    };
 
-// Kirim data ke Google Sheet
-rsvpForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  
-  // Simpan teks tombol asli dan nonaktifkan tombol
-  const originalButtonText = submitButton.textContent;
-  submitButton.disabled = true;
-  submitButton.textContent = 'Mengirim...';
+    // Kirim data ke Google Sheet
+    rsvpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Simpan teks tombol asli dan nonaktifkan tombol
+        const originalButtonText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = 'Mengirim...';
 
-  const newEntry = {
-    nama: document.getElementById('form-nama').value,
-    konfirmasi: document.getElementById('form-konfirmasi').value,
-    pesan: document.getElementById('form-pesan').value
-  };
+        const newEntry = {
+            nama: document.getElementById('form-nama').value,
+            konfirmasi: document.getElementById('form-konfirmasi').value,
+            pesan: document.getElementById('form-pesan').value
+        };
 
-  fetch(SHEET_URL, {
-    method: "POST",
-    body: JSON.stringify(newEntry),
-    headers: { "Content-Type": "application/json" }
-  })
-  .then(res => res.json())
-  .then(() => {
-    rsvpForm.reset();
-    renderGuestbook(); // reload daftar tamu
-  })
-  .catch(err => console.error("Gagal kirim data: ", err))
-  .finally(() => {
-      // Kembalikan tombol ke keadaan semula
-      submitButton.disabled = false;
-      submitButton.textContent = originalButtonText; // Sekarang variabelnya sudah ada
-  });
-});
+        fetch(SHEET_URL, {
+            method: "POST",
+            body: JSON.stringify(newEntry),
+            headers: { "Content-Type": "application/json" }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                rsvpForm.reset();
+                renderGuestbook(); // Muat ulang daftar tamu
+            } else {
+                alert('Maaf, terjadi kesalahan saat mengirim ucapan.');
+            }
+        })
+        .catch(err => console.error("Gagal kirim data: ", err))
+        .finally(() => {
+            // Kembalikan tombol ke keadaan semula
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+        });
+    });
+
     // --- 6. Navigasi, Musik, dan Fitur Salin ---
     const setupOtherFeatures = () => {
         const sections = document.querySelectorAll('main section[id]');
@@ -145,8 +150,6 @@ rsvpForm.addEventListener('submit', (e) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                } else {
-                    entry.target.classList.remove('visible');
                 }
             });
         }, { threshold: 0.1 });
@@ -161,7 +164,4 @@ rsvpForm.addEventListener('submit', (e) => {
     renderGuestbook(); // Memuat data RSVP saat halaman pertama kali dibuka
     setupOtherFeatures();
     setupScrollAnimations();
-
 });
-
-
