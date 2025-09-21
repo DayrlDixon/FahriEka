@@ -163,3 +163,4 @@ rsvpForm.addEventListener('submit', (e) => {
     setupScrollAnimations();
 
 });
+
