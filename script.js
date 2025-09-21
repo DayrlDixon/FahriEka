@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- GANTI URL INI ---
     // Tempel (paste) URL Web App yang Anda dapat dari Langkah 2 di sini
-    const SHEET_URL = "https://script.google.com/macros/s/AKfycbyMcPi2E7bpRe2iQYPhfrUSSwCMpVlL5WdtKq5sjsQLDYxD_MURo4YBY3c8R2T2P7u6/exec";
+    const SHEET_URL = "";
 
     // --- Pemilihan Elemen DOM ---
     const cover = document.getElementById('cover');
@@ -165,6 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupOtherFeatures();
     setupScrollAnimations();
 });
+
 
 
 
